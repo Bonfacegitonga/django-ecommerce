@@ -1,21 +1,52 @@
 {% extends 'shop/base.html' %} {% block title %} Checkout {% endblock title %}
 {% block content %}
-<h1>Checkout</h1>
-<div class="order-info">
-  <h3>Your order</h3>
-  <ul>
-    {% for item in cart %}
-    <li>
-      {{ item.quantity }}x {{ item.product.name }}
-      <span>${{ item.total_price }}</span>
-    </li>
-    {% endfor %}
-  </ul>
-  <p>Total: ${{ cart.get_total_price }}</p>
+<div
+  class="min-h-screen p-4 flex flex-col justify-center sm:flex-row leading-loose"
+>
+  <div class="basis-1/4 mt-6 h-fit p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+    <div class="flex items-center justify-between mb-4">
+      <h5 class="text-xl font-bold leading-none text-gray-900">Your order</h5>
+    </div>
+
+    <div class="">
+      <ul class="divide-y divide-gray-200">
+        {% for item in cart %}
+        <li class="py-3 sm:py-4">
+          <div class="flex items-center space-x-4">
+            
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900 truncate">
+                {{item.product.name}}
+              </p>
+              <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                {{ item.quantity }}x {{ item.product.name }}
+              </p>
+            </div>
+            <div
+              class="inline-flex items-center text-base font-semibold text-gray-900"
+            >
+              ${{ item.total_price }}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="flex justify-between font-bold border-t">
+        <p class="">Total: </p>
+        <p>${{ cart.get_total_price }}</p>
+      </div>
+      
+    </div>
+  </div>
+  <form
+    method="post"
+    class="basis-1/2 max-w-lg m-4 p-4 bg-white rounded shadow-xl"
+  >
+    {{ form.as_p }}
+    <p class="flex justify-end"><input  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3" type="submit" value="Place order" /></p>
+    {% csrf_token %}
+  </form>
 </div>
-<form method="post" class="order-form">
-  {{ form.as_p }}
-  <p><input type="submit" value="Place order" /></p>
-  {% csrf_token %}
-</form>
+
 {% endblock content %}
+

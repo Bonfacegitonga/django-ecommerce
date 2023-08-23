@@ -130,9 +130,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIAL_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 CART_SESSION_ID = "cart"
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-
 # Stripe settings
 STRIPE_PUBLISHABLE_KEY = "pk_test_51Ng4WdIb0HVSfeGf5AAmmihnot7Gt2oQGfTP6YWFYfBEI7uqVFRHPuGmBRV0Q9gY95c5rVGs4VYBuaYnjaixLcA500SChjUtRW"  # Publishable key
 STRIPE_SECRET_KEY = "sk_test_51Ng4WdIb0HVSfeGf531z9ygKJEd21LgSu31Xm42tdl9sqkIIjC7m36Cspnz7Lll3911YIJ88yuttp17hrcrNrJl400uROJK4GT"  # Secret key
