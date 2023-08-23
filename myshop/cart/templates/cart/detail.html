@@ -6,60 +6,114 @@
 {% endblock %}
 
 {% block content %}
-        <table  class="cart">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Remove</th>
-                <th>Unit price</th>
-                <th>Price</th> 
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart %}
-                {% with product=item.product  %}
-                <tr>
-                    <td>
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="{% if product.image %}{{ product.image.url }}
-                            {% else %}{% static "img/no_image.png" %}{% endif %}">
-                        </a> 
-                    </td>
-                    <td>{{ product.name }}</td>
-                    <td>
-                        <form action="{% url  "cart:cart_add" product.id %}" method='post'>
-                            {{ item.update_quantity_form.quantity }}
-                            {{ item.update_quantity_form.override }}
-                            <input type="submit" value="Update">
-                            {% csrf_token %}
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{% url "cart:cart_remove" product.id %}" method="post">
-                            <input type="submit" value="Remove">
-                            {% csrf_token %}
-                        </form>
-                    </td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
-                </tr>
-                {% endwith %}
-            {% endfor %}
-                <tr class="total">
-                    <td>Total</td>
-                    <td colspan="4"></td>
-                    <td class="num">${{ cart.get_total_price }}</td>
-                </tr>
-        </tbody>
-        
-    </table>
-    <p class="text-right">
-        <a href="{% url "shop:product_list" %}" class="button
-        light">Continue shopping</a>
-        <a href="{% url "orders:order_create" %}" class="button">Checkout</a>
-        </p>
-      
+<div class="bg-white">
+    <div class="container  mx-auto mt-10">
+          <div class="w-full bg-white px-10 py-10">
+            <div class="flex justify-between border-b pb-8">
+              <h1 class="font-semibold text-2xl">Your Cart</h1>
+              <h2 class="font-semibold text-2xl">{{cart|length}} Items</h2>
+            </div>
+            <div class="flex mt-10 mb-5">
+              <h3 class="font-bold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
+              <h3 class="font-bold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
+              <h3 class="font-bold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
+              <h3 class="font-bold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+              <h3 class="font-bold text-center text-gray-600 text-xs uppercase w-1/5 text-center"></h3>
+            </div>
 
+            {% for item in cart %}
+            {% with product=item.product  %}
+            <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5 border-b">
+                <div class="flex w-2/5 h-24"> <!-- product -->
+                  <div class="w-20 rounded-md">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img class="h-24 rounded-lg" src="{% if product.image %}{{ product.image.url }}
+                        {% else %}{% static "img/no_image.png" %}{% endif %}">
+                    </a>
+                    <img class="h-24" src="" alt="">
+                  </div>
+                  <div class="flex flex-col justify-between ml-4 flex-grow">
+                    <span class="font-bold text-sm">{{ product.name }}</span>                   
+                    
+                  </div>
+                </div>
+                <div class=" w-1/5">
+             
+                    <form class="flex justify-center" action="{% url  "cart:cart_add" product.id %}" method='post'>
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.override }}
+                        <button type="submit" class="border rounded fill-white hover:fill-white hover:bg-green-700 bg-green-400 hover:shadow-lg">
+                          <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z"/></svg>    
+                        </button>                       
+                         {% csrf_token %}
+                    </form>      
+                  
+                </div>
+                <span class="text-center w-1/5 font-semibold text-sm">${{ item.price }}</span>
+                <span class="text-center w-1/5 font-semibold text-sm">${{ item.total_price }}</span>
+                <span class="text-center w-1/5 font-semibold text-sm">
+                  <form action="{% url "cart:cart_remove" product.id %}" method="post">
+                    <button type="submit" class="text-red-500 hover:fill-red-700 fill-red-400 hover:shadow-lg">
+                      <svg   xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M261-120q-24.75 0-42.375-17.625T201-180v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438v-570ZM367-266h60v-399h-60v399Zm166 0h60v-399h-60v399ZM261-750v570-570Z"/></svg>
+
+                    </button>
+                    {% csrf_token %}
+                  </form>
+                  
+                </span>
+              </div>
+              
+              {% endwith %}
+            {% endfor %}
+            </div>
+            <div class="flex  justify-end">
+              <div id="summary" class="bg-gray-100 mb-5 w-4/5 px-8 py-5">
+                <h1 class="font-semibold text-2xl border-b pb-3">Order Summary</h1>
+                <div class="flex justify-between ">
+                  <span class="font-semibold text-sm uppercase">Items {{cart|length}}</span>
+                  <span class="font-semibold text-sm">${{cart.get_total_price}}</span>
+                </div>
+                <div class="flex justify-between">
+                  <label class="inline-block mb-3 text-sm">Shipping</label>
+                  <span class="font-semibold text-sm">$-</span>
+                </div>
+                <div class="flex justify-between">
+                  <label class="inline-block mb-3 text-sm">Discount</label>
+                  <span class="font-semibold text-sm">$-</span>
+                </div>
+                <div class="border-t py-2">
+                  <label for="promo" class="font-semibold inline-block mb-3 text-sm uppercase">Promo Code</label>
+                  
+                </div>
+               <div class="flex justify-start ">
+                <input type="text" id="promo" placeholder="Enter your code" class="p-2 text-sm w-1/2">
+                <button class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button>
+               </div>
+                
+                <div class="border-t mt-4">
+                  <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+                    <span>Total cost</span>
+                    <span>${{cart.get_total_price}}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <a href="{% url "shop:product_list" %}">
+                      <button class="bg-white border rounded border-black px-4 hover:text-white font-semibold hover:bg-green-600 py-2 text-sm text-black  w-30">
+                        Continue shopping
+                      </button>
+                    </a>
+                    <a href="{% url "orders:order_create" %}">
+                      <button class="bg-indigo-500 font-semibold w-30 rounded px-4 hover:bg-indigo-600 py-2 text-sm text-white" >Checkout</button>
+                    </a>                  
+                  </div>
+                  
+                </div>
+
+            </div>
+            
+              </div>        
+    </div>
+</div>
+        
 {% endblock content %}
+
+

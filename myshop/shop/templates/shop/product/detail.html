@@ -1,20 +1,40 @@
-{% extends "shop/base.html" %} {% load static %} {% block title %} {{
-product.name }} {% endblock %} {% block content %}
-<div class="product-detail">
-  <img src="{% if product.image %}{{ product.image.url }}{% else %} {% static
-  "img/no_image.png" %}{% endif %}">
-  <h1>{{ product.name }}</h1>
-  <h2>
-    <a href="{{ product.category.get_absolute_url }}">
-      {{ product.category }}
-    </a>
-  </h2>
-  <p class="price">${{ product.price }}</p>
-  <form action="{% url "cart:cart_add" product.id %}" method="post">
-    {{ cart_product_form }}
-    {% csrf_token %}
-    <input type="submit" value="Add to cart">
-  </form>
-  {{ product.description|linebreaks }}
+{% extends "shop/base.html" %}
+{% block title %} {{product.name }} {% endblock %} 
+{% block content %}
+
+<div class="flex justify-center items-center h-screen flex-wrap w-full">
+  <div class="flex justify-center items-center flex-row  h-auto w-auto">
+    <img class="w-auto h-[393px] block rounded-l-lg" src="{% if product.image %}{{ product.image.url }}{% else %} {% static
+      "img/no_image.png" %}{% endif %}">
+    </div>
+    <div class="bg-White ml-20 w-80 rounded-r-lg smL:w-72 smL:rounded-bl-lg smL:rounded-br-lg smL:rounded-r-none">
+      <div class="m-5">
+        <div class="m-3">
+          <h1 class='font-Montserrat text-2xl text-DarkGrayishBlue'>{{ product.name }}</h1>
+        </div>
+        <div class='m-3'>
+          <h1 class='text-green-400 smL:text-2xl font-Fraunces'><a href="{{ product.category.get_absolute_url }}">
+            {{ product.category }}
+          </a></h1>
+        </div>
+        <div class='w-64 m-3 smL:w-60'>
+          <p class='font-Montserrat text-[14px] text-DarkGrayishBlue'>{{ product.description}}</p>
+        </div>
+        <div class='flex m-3'>
+          <p class='font-Fraunces text-2xl text-DarkCyan'>${{ product.price }}</p>    
+        </div>
+        <div class='m-3'>
+          <form action="{% url "cart:cart_add" product.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input   class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300 ease-in-out" type="submit" value="Add to cart">
+          </form>
+          
+        </div>
+      </div>
+    {% comment %} </div> {% endcomment %}
+  </div>
+
 </div>
+
 {% endblock %}
