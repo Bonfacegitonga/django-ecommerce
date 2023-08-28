@@ -1,0 +1,41 @@
+Excel sheet required fields
+-Creation Date
+-Booking Date (Entry Date)
+-Branch Name
+-GL Account Name
+-GL Account ID
+-Debit Amount 
+-Credit Amount 
+-Check # (Transaction)
+-Notes
+-Notes (Transaction)
+-Transaction ID
+-Account Holder Name (Transaction)
+-Account Holder ID (Transaction)
+-Account ID (Transaction)
+-Product Name
+-User
+
+STEP 1
+-> extract from gljournalentries
+	-creationDate
+	-bookingDate
+	-transactionId 
+	-entryID
+	-gLAccountName
+	-creditAmount-if debit then debit amount else credit amount
+
+STEP 2
+->Retrieve user full name using userKey
+
+STEP 3 
+->Retrieve account id using accountKey from(loans or saving)
+
+STEP 4
+->Retrieve account holder name using accountHolderKey from account retrieved in step 3.
+
+STEP 5.
+->Transaction type ,Check,Routing and Notes customFields under Transactions using transaction id from step 1 ;
+
+STEP 6.
+->Create excel sheet

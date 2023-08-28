@@ -7,7 +7,7 @@
     <img class="w-auto h-[393px] block rounded-l-lg" src="{% if product.image %}{{ product.image.url }}{% else %} {% static
       "img/no_image.png" %}{% endif %}">
     </div>
-    <div class="bg-White ml-20 w-80 rounded-r-lg smL:w-72 smL:rounded-bl-lg smL:rounded-br-lg smL:rounded-r-none">
+    <div class="bg-White ml-20 w-120 rounded-r-lg smL:w-72 smL:rounded-bl-lg smL:rounded-br-lg smL:rounded-r-none">
       <div class="m-5">
         <div class="m-3">
           <h1 class='font-Montserrat text-2xl text-DarkGrayishBlue'>{{ product.name }}</h1>
@@ -18,7 +18,7 @@
           </a></h1>
         </div>
         <div class='w-64 m-3 smL:w-60'>
-          <p class='font-Montserrat text-[14px] text-DarkGrayishBlue'>{{ product.description}}</p>
+          <p class='font-Montserrat text-[14px] text-DarkGrayishBlue text-justify'>{{ product.description}}</p>
         </div>
         <div class='flex m-3'>
           <p class='font-Fraunces text-2xl text-DarkCyan'>${{ product.price }}</p>    
