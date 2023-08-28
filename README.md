@@ -4,8 +4,7 @@
 
 Welcome to the Django E-Commerce project! This is a simple and customizable e-commerce platform built with Django.
 
-- **Live Demo:** [Link to Live Demo](https://your-demo-link.com)
-- **Documentation:** [Link to Documentation](https://link-to-documentation.com)
+- **Documentation:** [Link to Documentation](https://www.djangoproject.com/)
 
 ## Features
 
@@ -41,7 +40,7 @@ Welcome to the Django E-Commerce project! This is a simple and customizable e-co
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/django-ecommerce.git
+   git clone https://github.com/Bonfacegitonga/django-ecommerce
    cd django-ecommerce
 
 2. Create a virtual environment and install dependencies:
