@@ -1,4 +1,4 @@
-![Screenshot 2023-08-28 214320](https://github.com/Bonfacegitonga/django-ecommerce/assets/65446155/cb702bd7-b2c1-4f05-b142-7730b4d9b960)# Django E-Commerce Project
+# Django E-Commerce Project
 
 ## Introduction
 
@@ -19,9 +19,11 @@ Welcome to the Django E-Commerce project! This is a simple and customizable e-co
 
 ## Screenshots
 
-
+![Screenshot 2023-08-28 214320](https://github.com/Bonfacegitonga/django-ecommerce/assets/65446155/cb702bd7-b2c1-4f05-b142-7730b4d9b960)
 ![Screenshot 2023-08-28 213136](https://github.com/Bonfacegitonga/django-ecommerce/assets/65446155/f0ef1de8-4e1e-402d-bce0-9bf4ccbc4454)
 ![Screenshot 2023-08-28 213207](https://github.com/Bonfacegitonga/django-ecommerce/assets/65446155/da6b0d8c-5e95-4687-866b-54b5e7acb3f5)
+![image](https://github.com/Bonfacegitonga/django-ecommerce/assets/65446155/10906118-192b-4698-9443-c28ea971c7e2)
+
 ![Screenshot 2023-08-28 214320](https://github.com/Bonfacegitonga/django-ecommerce/assets/65446155/7bc88287-f057-4790-9b3b-bf01165c792c)
 ![Screenshot 2023-08-28 214405](https://github.com/Bonfacegitonga/django-ecommerce/assets/65446155/98a1362e-1f72-4cff-bb28-d5c9f2b3f19d)
 
